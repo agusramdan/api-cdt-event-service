@@ -1,0 +1,69 @@
+---
+spring:
+  application:
+    name: API-CDT-EVENT-SERVICE
+
+---
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+  servlet:
+    session:
+      cookie:
+        http-only: true
+# 1 days = 1 * 24 * 60 * 60
+cookie:
+  maxAge: 86400
+
+spring:
+  config:
+    use-legacy-processing: true
+  jmx:
+    enabled: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000
+  main:
+    lazy-initialization: true
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      group-id: event-group
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+    admin:
+      auto-create-topics: true
+
+  data:
+    mongodb:
+      uri: mongodb://mongodb:27017/CDMEventDB
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+#  zipkin:
+#    enabled: false
+
+feign:
+  hystrix:
+    enabled: false
+
+#springdoc:
+#  api-docs:
+#    path: /v3/api-docs
+#  swagger-ui:
+#    path: /swagger-ui
