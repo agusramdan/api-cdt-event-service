@@ -20,7 +20,6 @@ public class EventController {
 
     private final KafkaProducerService kafkaProducerService;
     private final RawDataRepository rawDataRepository;
-
     @PostMapping
     public ResponseEntity<EventResponse> publishEvent(@RequestBody Object event) {
         val requestId = UUID.randomUUID();

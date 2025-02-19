@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication
 @EnableMongoRepositories(basePackages = "agus.ramdan.cdt.event.repository")
-//@ComponentScan({"agus.ramdan.cdt.event","agus.ramdan.base"})
+@ComponentScan({"agus.ramdan.cdt.event","agus.ramdan.base.exception"})
 public class MainApplication {
 
 	public static void main(String[] args) {

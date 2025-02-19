@@ -9,7 +9,7 @@ management:
 
 logging:
   level:
-    root: debug
+    root: INFO
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"
     level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
