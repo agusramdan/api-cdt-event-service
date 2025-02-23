@@ -1,10 +1,13 @@
 package agus.ramdan.cdt.event.service;
 
+import agus.ramdan.cdt.event.domain.DropData;
 import agus.ramdan.cdt.event.domain.TerminalStatus;
 import agus.ramdan.cdt.event.domain.EventLog;
 import agus.ramdan.cdt.event.domain.RawData;
 import agus.ramdan.cdt.event.dto.RawListDto;
 import agus.ramdan.cdt.event.dto.RawMapDto;
+import agus.ramdan.cdt.event.dto.RawProcessDto;
+import agus.ramdan.cdt.event.dto.TerminalEventDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -29,5 +32,16 @@ public class KafkaProducerService {
     }
     public void send(RawMapDto event) {
         kafkaTemplate.send("raw-map-topic", event);
+    }
+    public void send(RawProcessDto process) {
+        kafkaTemplate.send("raw-process-topic", process);
+    }
+
+    public void send(DropData build) {
+        kafkaTemplate.send("drop-data-topic", build);
+    }
+
+    public void send(TerminalEventDto terminalEventDto) {
+        kafkaTemplate.send("terminal-event-topic", terminalEventDto);
     }
 }

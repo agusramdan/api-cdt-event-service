@@ -24,6 +24,8 @@ public class DropData {
     @Field("timestamp")
     private long timestamp;
 
+    private int level;
+
     private Object data;
 
 }

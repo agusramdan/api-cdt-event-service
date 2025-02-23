@@ -27,5 +27,3 @@ public class TerminalStatus {
     private String value;
 
 }
-
-

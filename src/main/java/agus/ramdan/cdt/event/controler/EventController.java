@@ -19,7 +19,7 @@ import java.util.UUID;
 public class EventController {
 
     private final KafkaProducerService kafkaProducerService;
-    private final RawDataRepository rawDataRepository;
+    //private final RawDataRepository rawDataRepository;
     @PostMapping
     public ResponseEntity<EventResponse> publishEvent(@RequestBody Object event) {
         val requestId = UUID.randomUUID();
@@ -28,8 +28,8 @@ public class EventController {
                 .timestamp(Instant.now().getEpochSecond())
                 .data(event)
                 .build();
-        rawDataRepository.save(rawRequest);
-        //kafkaProducerService.send(rawRequest);
+        //rawDataRepository.save(rawRequest);
+        kafkaProducerService.send(rawRequest);
         return ResponseEntity.accepted().body(
                 EventResponse.builder()
                         .requestId(rawRequest.getRequestId())
