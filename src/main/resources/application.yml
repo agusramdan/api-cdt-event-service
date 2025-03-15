@@ -21,12 +21,11 @@ spring:
     use-legacy-processing: true
   jmx:
     enabled: true
-
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9000
+          issuer-uri: http://agusramdan.tech:9000
   main:
     lazy-initialization: true
 
@@ -50,20 +49,21 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://mongodb:27017/CDMEventDB
+      uri: mongodb://mongodb:27017/EventDB
 
   jackson:
     property-naming-strategy: SNAKE_CASE
 
-#  zipkin:
-#    enabled: false
+  zipkin:
+    enabled: false
 
 feign:
   hystrix:
     enabled: false
 
-#springdoc:
-#  api-docs:
-#    path: /v3/api-docs
-#  swagger-ui:
-#    path: /swagger-ui
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui
+

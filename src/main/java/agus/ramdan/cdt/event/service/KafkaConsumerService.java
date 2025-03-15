@@ -35,19 +35,19 @@ public class KafkaConsumerService {
     private final KafkaProducerService kafkaProducerService;
 
     @KafkaListener(topics = "event-log-topic", groupId = "event-group")
-    public void consume(EventLog event) {
-        log.info("Consumed event: {}", event.getRequestId());
+    public void consumeEventLog(EventLog event) {
+        log.info("Consumed EventLog: {}", event.getRequestId());
         eventLogRepository.save(event);
     }
     @KafkaListener(topics = "terminal-status-topic", groupId = "event-group")
-    public void consume(TerminalStatus event) {
-        log.info("Consumed event: {}", event.getTerminalId());
+    public void consumeTerminalStatus(TerminalStatus event) {
+        log.info("Consumed TerminalStatus: {}", event.getTerminalId());
         terminalStatusRepository.save(event);
     }
 
     @KafkaListener(topics = "raw-data-topic", groupId = "event-group")
-    public void consume(RawData event) {
-        log.info("Consumed event: {}", event.getRequestId());
+    public void consumeRawData(RawData event) {
+        log.info("Consumed RawData: {}", event.getRequestId());
         rawDataRepository.save(event);
         val prosess = RawProcessDto.builder().level(1)
                 .requestId(event.getRequestId())
@@ -59,8 +59,8 @@ public class KafkaConsumerService {
     }
 
     @KafkaListener(topics = "raw-process-topic", groupId = "event-group")
-    public void consume(RawProcessDto event) {
-        log.info("Consumed event: {}", event.getRequestId());
+    public void consumeRawProcessDto(RawProcessDto event) {
+        log.info("Consumed RawProcessDto: {}", event.getRequestId());
         val data = event.getData();
         if (data instanceof Map){
             kafkaProducerService.send(
@@ -95,7 +95,8 @@ public class KafkaConsumerService {
     }
 
     @KafkaListener(topics = "raw-map-topic", groupId = "event-group")
-    public void consume(RawMapDto event) {
+    public void consumeRawMapDto(RawMapDto event) {
+        log.info("Consumed RawMapDto: {}", event.getRequestId());
         if(event.getData().containsKey("terminal_id") && event.getData().containsKey("timestamp")) {
             kafkaProducerService.send(
                     event.getData().get("timestamp") instanceof Long ?
@@ -125,7 +126,8 @@ public class KafkaConsumerService {
         }
     }
     @KafkaListener(topics = "raw-list-topic", groupId = "event-group")
-    public void consume(RawListDto event) {
+    public void consumeRawListDto(RawListDto event) {
+        log.info("Consumed RawListDto: {}", event.getRequestId());
         for (Object data : event.getData()) {
             kafkaProducerService.send(
                     RawProcessDto.builder()
@@ -139,7 +141,8 @@ public class KafkaConsumerService {
     }
 
     @KafkaListener(topics = "drop-data-topic", groupId = "event-group")
-    public void consume(DropData event) {
+    public void consumeDropData(DropData event) {
+        log.info("Consumed DropData: {}", event.getRequestId());
         dropDataRepository.save(event);
     }
 }

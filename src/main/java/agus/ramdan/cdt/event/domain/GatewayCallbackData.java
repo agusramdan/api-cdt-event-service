@@ -8,28 +8,23 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "terminal_status")
+@Document(collection = "gateway_callback_data")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TerminalStatus {
+public class GatewayCallbackData {
     @Id
     private String id;
 
-    @Field("terminal_id")
-    private String terminalId;
-
-    @Field("name")
-    private String name;
-
-    @Field("request_id")
-    private String requestId;
+    @Field("gateway_code")
+    private String gatewayCode;
 
     @Field("timestamp")
     private long timestamp;
 
-    @Field("value")
-    private String value;
+    private Object data;
 
 }
+
+

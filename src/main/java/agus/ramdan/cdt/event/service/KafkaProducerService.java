@@ -1,9 +1,6 @@
 package agus.ramdan.cdt.event.service;
 
-import agus.ramdan.cdt.event.domain.DropData;
-import agus.ramdan.cdt.event.domain.TerminalStatus;
-import agus.ramdan.cdt.event.domain.EventLog;
-import agus.ramdan.cdt.event.domain.RawData;
+import agus.ramdan.cdt.event.domain.*;
 import agus.ramdan.cdt.event.dto.RawListDto;
 import agus.ramdan.cdt.event.dto.RawMapDto;
 import agus.ramdan.cdt.event.dto.RawProcessDto;
@@ -43,5 +40,8 @@ public class KafkaProducerService {
 
     public void send(TerminalEventDto terminalEventDto) {
         kafkaTemplate.send("terminal-event-topic", terminalEventDto);
+    }
+    public void send(GatewayCallbackData event) {
+        kafkaTemplate.send("gateway-callback-topic", event);
     }
 }

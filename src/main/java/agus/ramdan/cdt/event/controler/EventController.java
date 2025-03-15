@@ -7,10 +7,12 @@ import agus.ramdan.cdt.event.service.KafkaProducerService;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -19,7 +21,7 @@ import java.util.UUID;
 public class EventController {
 
     private final KafkaProducerService kafkaProducerService;
-    //private final RawDataRepository rawDataRepository;
+    private final RawDataRepository rawDataRepository;
     @PostMapping
     public ResponseEntity<EventResponse> publishEvent(@RequestBody Object event) {
         val requestId = UUID.randomUUID();
@@ -28,7 +30,7 @@ public class EventController {
                 .timestamp(Instant.now().getEpochSecond())
                 .data(event)
                 .build();
-        //rawDataRepository.save(rawRequest);
+        rawDataRepository.save(rawRequest);
         kafkaProducerService.send(rawRequest);
         return ResponseEntity.accepted().body(
                 EventResponse.builder()
