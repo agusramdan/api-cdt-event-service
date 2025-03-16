@@ -2,6 +2,7 @@ package agus.ramdan.cdt.event.controler;
 
 import agus.ramdan.cdt.event.domain.RawData;
 import agus.ramdan.cdt.event.dto.EventResponse;
+import agus.ramdan.cdt.event.mapping.RawDataMapper;
 import agus.ramdan.cdt.event.repository.RawDataRepository;
 import agus.ramdan.cdt.event.service.KafkaProducerService;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +20,9 @@ import java.util.UUID;
 @RequestMapping("/api/cdt/cdm/events")
 @RequiredArgsConstructor
 public class EventController {
-
     private final KafkaProducerService kafkaProducerService;
     private final RawDataRepository rawDataRepository;
+    private final RawDataMapper rawDataMapper;
     @PostMapping
     public ResponseEntity<EventResponse> publishEvent(@RequestBody Object event) {
         val requestId = UUID.randomUUID();
@@ -31,7 +32,8 @@ public class EventController {
                 .data(event)
                 .build();
         rawDataRepository.save(rawRequest);
-        kafkaProducerService.send(rawRequest);
+        val rawDTO = rawDataMapper.mapToRawDTO(rawRequest);
+        kafkaProducerService.send(rawDTO);
         return ResponseEntity.accepted().body(
                 EventResponse.builder()
                         .requestId(rawRequest.getRequestId())

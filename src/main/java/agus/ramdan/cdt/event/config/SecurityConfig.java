@@ -22,14 +22,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/v3/api-docs/**","/v3/api-docs.yaml").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/cdt/cdm/**").hasAuthority("SCOPE_cdm.read")
-                        .requestMatchers(HttpMethod.POST,"/api/cdt/cdm/**").hasAuthority("SCOPE_cdm.write")
-                        .requestMatchers(HttpMethod.PUT,"/api/cdt/cdm/**").hasAuthority("SCOPE_cdm.write")
-                        .requestMatchers(HttpMethod.DELETE,"/api/cdt/cdm/**").hasAuthority("SCOPE_cdm.delete")
+                        .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/v3/api-docs/**"
+                                ,"/v3/api-docs.yaml","/api/cdt/gateway/callback/**").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/cdt/cdm/events").hasAuthority("SCOPE_cdm.write")
                         .anyRequest().authenticated()
             ).oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())));
-
         return http.build();
     }
 
@@ -37,7 +34,6 @@ public class SecurityConfig {
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         grantedAuthoritiesConverter.setAuthorityPrefix("SCOPE_");
-
         JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
         return jwtAuthenticationConverter;

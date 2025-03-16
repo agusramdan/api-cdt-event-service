@@ -6,30 +6,32 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "terminal_status")
+@Document(collection = "event_logs")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TerminalStatus {
+public class EventLogData {
     @Id
     private String id;
-
-    @Field("terminal_id")
-    private String terminalId;
-
-    @Field("name")
-    private String name;
 
     @Field("request_id")
     private String requestId;
 
+    @Field("terminal_id")
+    private String terminalId;
+
+    @Field("event_type")
+    private String eventType;
+
+    @Field("message")
+    private String message;
+
     @Field("timestamp")
     private long timestamp;
-
-    @Field("value")
-    private String value;
-
 }
+
+

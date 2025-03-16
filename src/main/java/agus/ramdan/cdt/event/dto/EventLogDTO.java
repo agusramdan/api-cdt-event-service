@@ -1,28 +1,25 @@
 package agus.ramdan.cdt.event.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.Map;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-public class TerminalEventDTO {
-
+@NoArgsConstructor
+@AllArgsConstructor
+public class EventLogDTO {
+    private String id;
     @JsonProperty("request_id")
     private String requestId;
-
-    @JsonProperty("timestamp")
-    private long timestamp;
-
-    private int level;
-
     @JsonProperty("terminal_id")
     private String terminalId;
-
-    private Map<String,Object> data;
-
+    @JsonProperty("event_type")
+    private String eventType;
+    private String message;
+    private long timestamp;
 }
 
 
