@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
+@EnableRetry
 @SpringBootApplication
 @EnableMongoRepositories(basePackages = "agus.ramdan.cdt.event.repository")
 //@ComponentScan({"agus.ramdan.cdt.event","agus.ramdan.base.exception"})
