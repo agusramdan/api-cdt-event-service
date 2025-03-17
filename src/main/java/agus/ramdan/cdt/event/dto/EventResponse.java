@@ -3,7 +3,6 @@ package agus.ramdan.cdt.event.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 @Builder
 @Getter

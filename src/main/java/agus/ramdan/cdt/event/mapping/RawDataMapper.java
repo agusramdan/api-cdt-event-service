@@ -2,9 +2,7 @@ package agus.ramdan.cdt.event.mapping;
 
 import agus.ramdan.cdt.event.domain.RawData;
 import agus.ramdan.cdt.event.dto.RawDTO;
-import org.mapstruct.*;
-
-import java.util.UUID;
+import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface RawDataMapper {

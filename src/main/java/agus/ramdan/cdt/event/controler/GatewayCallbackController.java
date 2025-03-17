@@ -1,7 +1,6 @@
 package agus.ramdan.cdt.event.controler;
 
 import agus.ramdan.cdt.event.domain.GatewayCallbackData;
-import agus.ramdan.cdt.event.domain.RawData;
 import agus.ramdan.cdt.event.dto.EventResponse;
 import agus.ramdan.cdt.event.mapping.GatewayCallbackMapper;
 import agus.ramdan.cdt.event.repository.GatewayDataRepository;
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/cdt/gateway/callback")
