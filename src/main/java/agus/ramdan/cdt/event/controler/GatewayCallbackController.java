@@ -2,6 +2,7 @@ package agus.ramdan.cdt.event.controler;
 
 import agus.ramdan.cdt.event.domain.GatewayCallbackData;
 import agus.ramdan.cdt.event.dto.EventResponse;
+import agus.ramdan.cdt.event.dto.GatewayCallbackDTO;
 import agus.ramdan.cdt.event.mapping.GatewayCallbackMapper;
 import agus.ramdan.cdt.event.repository.GatewayDataRepository;
 import agus.ramdan.cdt.event.service.KafkaProducerService;
@@ -28,8 +29,8 @@ public class GatewayCallbackController {
                 .data(event)
                 .build();
         gatewayDataRepository.save(rawRequest);
-        val dto = gatewayCallbackMapper.mapToGatewayCallbackDTO(rawRequest);
-        kafkaProducerService.send(dto);
+        GatewayCallbackDTO dto = gatewayCallbackMapper.mapToGatewayCallbackDTO(rawRequest);
+        kafkaProducerService.sendGatewayCallbackDTO(dto);
         return ResponseEntity.accepted().body(
                 EventResponse.builder()
                         .timestamp(rawRequest.getTimestamp())

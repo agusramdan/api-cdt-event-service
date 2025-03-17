@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 public class KafkaProducerService {
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
-    public void send(RawDTO event) {
+    public void sendRawDTO(RawDTO event) {
         kafkaTemplate.send("raw-dto-topic", event);
     }
 //    public void send(TerminalStatusDTO event) {
 //        kafkaTemplate.send("terminal-status-dto-topic", event);
 //    }
-    public void send(GatewayCallbackDTO event) {
+    public void sendGatewayCallbackDTO(GatewayCallbackDTO event) {
         kafkaTemplate.send("gateway-callback-topic", event);
     }
 

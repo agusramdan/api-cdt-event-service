@@ -2,6 +2,7 @@ package agus.ramdan.cdt.event.controler;
 
 import agus.ramdan.cdt.event.domain.RawData;
 import agus.ramdan.cdt.event.dto.EventResponse;
+import agus.ramdan.cdt.event.dto.RawDTO;
 import agus.ramdan.cdt.event.mapping.RawDataMapper;
 import agus.ramdan.cdt.event.repository.RawDataRepository;
 import agus.ramdan.cdt.event.service.KafkaProducerService;
@@ -32,8 +33,8 @@ public class EventController {
                 .data(event)
                 .build();
         rawDataRepository.save(rawRequest);
-        val rawDTO = rawDataMapper.mapToRawDTO(rawRequest);
-        kafkaProducerService.send(rawDTO);
+        RawDTO rawDTO = rawDataMapper.mapToRawDTO(rawRequest);
+        kafkaProducerService.sendRawDTO(rawDTO);
         return ResponseEntity.accepted().body(
                 EventResponse.builder()
                         .requestId(rawRequest.getRequestId())
