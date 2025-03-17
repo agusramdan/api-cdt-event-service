@@ -13,9 +13,9 @@ public class KafkaProducerService {
     public void send(RawDTO event) {
         kafkaTemplate.send("raw-dto-topic", event);
     }
-    public void send(TerminalStatusDTO event) {
-        kafkaTemplate.send("terminal-status-dto-topic", event);
-    }
+//    public void send(TerminalStatusDTO event) {
+//        kafkaTemplate.send("terminal-status-dto-topic", event);
+//    }
     public void send(GatewayCallbackDTO event) {
         kafkaTemplate.send("gateway-callback-topic", event);
     }
