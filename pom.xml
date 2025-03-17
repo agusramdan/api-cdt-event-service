@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>agus.ramdan.cdt</groupId>
 	<artifactId>api-cdt-event-service</artifactId>
-	<version>3.3.8.1.20250228</version>
+	<version>21.3.3.8.1.20250228</version>
 	<name>api-cdt-event-services</name>
 	<description>Prosesing Even Log From External System</description>
 	<url/>
@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 		<spring-cloud.version>2024.0.0</spring-cloud.version>
 		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
 		<org.modelmapper.version>3.2.1</org.modelmapper.version>

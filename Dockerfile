@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim
+FROM openjdk:21-jdk-slim
 VOLUME /tmp
 ADD target/app.jar /app.jar
 RUN bash -c 'touch /app.jar'
