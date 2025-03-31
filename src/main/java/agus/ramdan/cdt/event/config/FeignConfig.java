@@ -1,7 +1,6 @@
 package agus.ramdan.cdt.event.config;
 
-import agus.ramdan.base.exception.CustomFeignErrorDecoder;
-import agus.ramdan.base.interceptor.AuthorizationRequestInterceptor;
+
 import feign.Capability;
 import feign.RequestInterceptor;
 import feign.codec.ErrorDecoder;
@@ -17,16 +16,16 @@ import org.springframework.context.annotation.Configuration;
 )
 public class FeignConfig {
 
-    @Bean
-    public RequestInterceptor requestInterceptor() {
-        return new AuthorizationRequestInterceptor();
-    }
+//    @Bean
+//    public RequestInterceptor requestInterceptor() {
+//        return new AuthorizationRequestInterceptor();
+//    }
     @Bean
     public Capability capability(final MeterRegistry registry) {
         return new MicrometerCapability(registry);
     }
-    @Bean
-    public ErrorDecoder errorDecoder() {
-        return new CustomFeignErrorDecoder();
-    }
+//    @Bean
+//  /  public ErrorDecoder errorDecoder() {
+//        return new CustomFeignErrorDecoder();
+//    }
 }
