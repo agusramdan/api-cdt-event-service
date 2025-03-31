@@ -21,7 +21,7 @@ public class ResourceServerConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/v3/api-docs/**"
+                        .requestMatchers("/actuator/**","/swagger-ui.html","/swagger-ui/**", "/v3/api-docs/**"
                                 ,"/v3/api-docs.yaml","/api/cdt/gateway/callback/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/cdt/cdm/events").hasAuthority("SCOPE_cdm.write")
                         .anyRequest().authenticated()
