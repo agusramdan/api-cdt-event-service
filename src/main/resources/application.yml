@@ -1,7 +1,7 @@
 ---
 spring:
   application:
-    name: API-CDT-EVENT-SERVICE
+    name: api-cdt-event-service
 
 ---
 server:
@@ -54,8 +54,6 @@ spring:
   jackson:
     property-naming-strategy: SNAKE_CASE
 
-  zipkin:
-    enabled: false
 
 feign:
   hystrix:
@@ -67,3 +65,37 @@ springdoc:
   swagger-ui:
     path: /swagger-ui
 
+logging:
+  pattern:
+    correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+  level:
+    root: WARN
+    agus.ramdan.base.exception: DEBUG
+    agus.ramdan.cdt.cdm: INFO
+
+management:
+  server:
+    port: 7180
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+  security:
+    enabled: false
+  metrics:
+    tags:
+      application: api-cdt-event-service
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+  tracing:
+    sampling:
+      probability: 1.0
+  observations:
+    key-values:
+      application: api-cdt-event-service

@@ -14,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Profile("oauth2")
 @Configuration
-public class SecurityConfig {
+public class ResourceServerConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http

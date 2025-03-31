@@ -5,11 +5,11 @@ management:
     enabled: true
   zipkin:
     tracing:
-      endpoint: http://zipkin:9411/api/v2/spans
+      endpoint: http://tempo:9411/api/v2/spans
 
-logging:
-  level:
-    root: INFO
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"
-    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+#logging:
+#  level:
+#    root: INFO
+#  pattern:
+#    console: "%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"
+#    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
