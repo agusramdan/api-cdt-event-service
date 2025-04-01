@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>agus.ramdan.cdt</groupId>
 	<artifactId>api-cdt-event-service</artifactId>
-	<version>21.3.4.4.0.20250331</version>
+	<version>21.3.4.4.0.20250401</version>
 	<name>api-cdt-event-service</name>
 	<description>Processing Even Log From External System</description>
 	<url/>
