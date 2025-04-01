@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>agus.ramdan.cdt</groupId>
 	<artifactId>api-cdt-event-service</artifactId>
-	<version>21.3.3.8.1.20250334</version>
+	<version>21.3.4.4.0.20250331</version>
 	<name>api-cdt-event-services</name>
-	<description>Prosesing Even Log From External System</description>
+	<description>Processing Even Log From External System</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -167,6 +167,59 @@
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>agus.ramdan.cdt</groupId>
+			<artifactId>api-cdt-core-service</artifactId>
+			<version>21.3.4.4.0.20250329</version>
+			<classifier>client</classifier>
+			<exclusions>
+				<exclusion>
+					<groupId>io.micrometer</groupId>
+					<artifactId>datasource-micrometer-tracing-bridge-otel</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>net.ttddyy.observation</groupId>
+					<artifactId>datasource-micrometer-spring-boot</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.micrometer</groupId>
+					<artifactId>micrometer-registry-prometheus</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-data-jpa</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-graphql</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springdoc</groupId>
+					<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 		<!-- Testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -184,7 +237,12 @@
 <!--			<scope>test</scope>-->
 <!--		</dependency>-->
 	</dependencies>
-
+	<repositories>
+		<repository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/agusramdan/mavenrepo</url>
+		</repository>
+	</repositories>
 	<build>
 		<plugins>
 			<plugin>

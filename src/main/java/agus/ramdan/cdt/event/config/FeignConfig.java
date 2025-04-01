@@ -2,8 +2,6 @@ package agus.ramdan.cdt.event.config;
 
 
 import feign.Capability;
-import feign.RequestInterceptor;
-import feign.codec.ErrorDecoder;
 import feign.micrometer.MicrometerCapability;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.cloud.openfeign.EnableFeignClients;
